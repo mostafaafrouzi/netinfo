@@ -16,7 +16,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'temurin'
 
       - name: Install Android SDK Build Tools
@@ -25,6 +25,8 @@ jobs:
           sudo apt-get install -y zip
           sudo apt-get install --only-upgrade -y unzip
           sudo apt-get install -y android-sdk
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30" "tools"
 
       - name: Build APK
         run: ./gradlew assembleRelease
