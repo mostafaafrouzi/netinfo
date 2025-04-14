@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
   const [deviceInfo, setDeviceInfo] = useState({
     name: "",
     version: "",
   });
+  const { toast } = useToast();
 
   useEffect(() => {
     // Access navigator only on the client side
@@ -22,20 +24,29 @@ export default function Home() {
   const openPhoneInfo = async () => {
     if (typeof window !== "undefined") {
       try {
-        // Using an intent to open the Phone Info menu (may not work on all devices)
-        window.location.href = "intent://*#*#4636#*#*/#Intent;scheme=android_secret_code;package=com.android.phone;action=android.intent.action.DIAL;end";
+        // Attempt to open Phone Info menu via intent
+        const intentUrl = "intent://*#*#4636#*#*/#Intent;scheme=android_secret_code;package=com.android.phone;action=android.intent.action.DIAL;end";
+        window.location.href = intentUrl;
       } catch (error) {
-        alert("Failed to open Phone Info menu directly. Please check compatibility.");
+        toast({
+          title: "Error",
+          description: "Failed to open Phone Info menu directly. This may not be supported on your device.",
+          variant: "destructive",
+        });
       }
     } else {
-      alert("This function is only available on a device.");
+      toast({
+        title: "Error",
+        description: "This function is only available on a device.",
+        variant: "destructive",
+      });
     }
   };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4">
       <h1 className="text-2xl font-bold mb-4">Net Info Access</h1>
-      <Button variant="default" size="lg" className="mb-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded" onClick={openPhoneInfo}>
+      <Button variant="default" size="lg" onClick={openPhoneInfo}>
         Open Phone Info
       </Button>
       {deviceInfo.name && deviceInfo.version && (
