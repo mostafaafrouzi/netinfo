@@ -27,11 +27,16 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        gradle-version: 8.0
+        gradle-version: 8.2
         gradle-home-cache-cleanup: true
         
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      
+    - name: Build with Gradle
+      run: |
+        export JAVA_HOME=$JAVA_HOME_17_X64
+        ./gradlew clean build --stacktrace
       
     - name: Build Debug APK
       run: |
@@ -58,12 +63,14 @@ jobs:
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
+        if-no-files-found: error
         
     - name: Upload Release APK
       uses: actions/upload-artifact@v3
       with:
         name: app-release
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        if-no-files-found: error
         
     - name: Create Release
       uses: softprops/action-gh-release@v1
