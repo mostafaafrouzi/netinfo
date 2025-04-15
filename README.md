@@ -1,19 +1,57 @@
-# Net Info Access
+# NetInfo - دسترسی سریع به اطلاعات گوشی
 
-A simple Android application to provide quick access to the Phone Info menu.
+یک اپلیکیشن ساده و سبک برای دسترسی سریع به منوی اطلاعات گوشی در اندروید.
 
-## Features
+## ویژگی‌ها
 
--   Directly opens the Phone Info menu.
--   Displays device information.
+- دسترسی سریع به منوی اطلاعات گوشی
+- نمایش قدرت سیگنال شبکه
+- نمایش نوع شبکه فعال
+- امکان انتخاب نوع شبکه
+- ویجت صفحه اصلی برای دسترسی سریع
+- طراحی مینیمال و مدرن
+- بدون نیاز به روت
+- بدون نیاز به اینترنت
+- سازگار با اکثر برندهای گوشی
 
-## How to Use
+## نصب
 
-1.  Download the `app-release.apk` file from the latest release in the "Actions" tab.
-2.  Enable "Install unknown apps" in your device's settings.
-3.  Install the APK file.
-4.  Open the app and tap the "Open Phone Info" button.
+1. فایل APK را از بخش Releases دانلود کنید
+2. آن را روی دستگاه اندروید خود نصب کنید
+3. برای استفاده از ویجت، آن را به صفحه اصلی اضافه کنید
 
-## Note
+## ساختار پروژه
 
-The Phone Info menu may not be available on all devices.
+- `MainActivity.kt`: صفحه اصلی برنامه
+- `NetInfoWidget.kt`: ویجت صفحه اصلی
+- `build.gradle`: تنظیمات ساخت
+- `AndroidManifest.xml`: تنظیمات برنامه و مجوزها
+
+## توسعه
+
+برای توسعه این پروژه:
+
+1. پروژه را کلون کنید
+2. Android Studio را باز کنید
+3. پروژه را import کنید
+4. تغییرات مورد نظر را اعمال کنید
+5. با push کردن به main branch، APK به صورت خودکار ساخته می‌شود
+
+## مجوزها
+
+این برنامه از مجوزهای زیر استفاده می‌کند:
+- READ_PHONE_STATE
+- ACCESS_NETWORK_STATE
+- ACCESS_WIFI_STATE
+
+## سازگاری
+
+این برنامه با اندروید 7.0 (API 24) و بالاتر سازگار است.
+
+## مشارکت
+
+مشارکت‌ها از طریق Pull Request پذیرفته می‌شوند.
+
+## لایسنس
+
+این پروژه تحت لایسنس MIT منتشر شده است.
