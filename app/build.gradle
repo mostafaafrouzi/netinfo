@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def compose_version = "1.5.0"
+
 android {
     namespace 'com.example.netinfo'
     compileSdk 34
